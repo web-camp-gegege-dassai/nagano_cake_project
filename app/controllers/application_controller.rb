@@ -1,5 +1,4 @@
 class ApplicationController < ActionController::Base
-  before_action :authenticate_customer!, except: [:top,:about]
 
   protect_from_forgery with: :exception
 

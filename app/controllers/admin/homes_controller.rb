@@ -1,2 +1,2 @@
-class Admin::HomesController < ApplicationController
+class Admin::HomesController < Admin::ApplicationController
 end
