@@ -1,11 +1,100 @@
- 商品一覧 （全<%= @items.count %>件）
+<td><%= link_to "ヘッダー", edit_customers_path,class: "btn btn-outline-dark"%></td>
+<td><%= link_to "カートに入れる", edit_customers_path,class: "col-xs-11 btn btn-success"%></td>
+<td><%= link_to "カートを空にする", edit_customers_path,class: "col-xs-11 btn btn-danger"%></td>
+<td><%= link_to "買い物を続ける", edit_customers_path,class: "col-xs-11 btn btn-primary"%></td>
 
-   <% @items.each do |item| %>
-       <%= link_to item_path(item.id) do %>
-        <%= attachment_image_tag item, :image, size: "50x50", format: 'jpeg', fallback: "no_image.jpg" %>
-       <% end %>
-    <p><%= item.name %></p>
-    <p> ¥<%= item.price %>*1.1</p>
-   <% end %>
+<table class="table table-bordered">
+   <thead class="thead-light">
+      　<tr class="active">
+            <th>商品名</th>
+            <th>単価（税込）</th>
+            <th>数量</th>
+            <th>小計</th>
+            <th></th>
+        </tr>
+    </thead>
+    
+    <tbody>
+        <tr>
+            <th>tannka</th>
+            <td>Hanako</td>
+            <td>Qiita</td>
+            <td>@Hanaq</td>
+            <td>@Hanaq</td>
+        </tr>
+        <tr>
+            <th>2</th>
+            <td>Taro</td>
+            <td>Qiita</td>
+            <td>@TaroQ</td>
+            <td>@TaroQ</td>
+        </tr>
+         <tr>
+            <th></th>
+            <td>Hanako</td>
+            <td>Qiita</td>
+            <td>@Hanaq</td>
+            <td>@TaroQ</td>
+        </tr>
+    </tbody>
+</table>
 
-   <%= paginate @items %>
+<div class="container">
+  <div class='row'>
+   <div class="col-lg-7">
+
+<table class="table table-bordered">
+    <tbody>
+        <tr>
+            <th>氏名</th>
+            <td>Hanako</td>
+        </tr>
+        <tr>
+            <th>カナ</th>
+            <td>Taro</td>
+        </tr>
+         <tr>
+            <th>郵便番号</th>
+            <td>Hanako</td>
+        </tr>
+         <tr>
+            <th>住所</th>
+            <td>東京都渋谷区ああああああああああああああああああああああ</td>
+        </tr>
+         <tr>
+            <th>電話番号</th>
+            <td>Hanako</td>
+        </tr>
+         <tr>
+            <th>メールアドレス</th>
+            <td>Hanako</td>
+        </tr>
+    </tbody>
+</table>
+
+   </div>
+   </div>
+   </div>
+
+
+
+
+
+<div class="container">
+  <div class='row'>
+  <h2>  商品一覧</h2> <h5>（全<%= @items.count %>件）</h5>
+   <div class="col-lg-4">
+     <% @items.each do |item| %>
+         <%= link_to item_path(item.id) do %>
+          <%= attachment_image_tag item, :image, size: "50x50", format: 'jpeg', fallback: "no_image.jpg" %>
+         <% end %>
+      <p><%= item.name %></p>
+      <p> ¥<%= item.price %>*1.1</p>
+     <% end %>
+    </div>
+   </div>
+   <div class='row'>
+    <%= paginate @items %>
+   </div>
+  </div>
+   
