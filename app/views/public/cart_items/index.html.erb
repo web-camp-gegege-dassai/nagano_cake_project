@@ -8,31 +8,29 @@
             <th></th>
         </tr>
     </thead>
-    <% @cart_item.each do |cart_item| %>
+   
     <tbody>
         <tr>
+        <% @cart_item.each do |cart_item| %>   
             <th>
               <%= attachment_image_tag cart_item.item, :image, size: "20x30", format: 'jpeg', fallback: "no_image.jpg" %>
               <%= cart_item.item.name %>
             </th>
+            <td><%= cart_item.item.price %>*1.1</td>
+        <% end %>
+        
+            <td>
+              <%= form_with model:@cart_item, url:'/cart_items' local:true do |f| %>
+               <%= f.select :amount, [1,2,3,4,5,6,7,8,9,10], {include_blank: '個数選択'}, { class: 'form-control' , required: true } %>
+               <%= f.submit '変更',class:"btn btn-outline-success" %>
+              <% end %>
+            </td>
+            
+        <% @cart_item.each do |cart_item| %>   
+            <td> <%= link_to "削除する", cart_item_path(cart_item.id), method: :delete, remote: true, class: "btn btn-danger" %></td>
             <td><%= cart_item.item.price %>*<%= cart_item.amount %>*1.1</td>
-            <td>Qiita</td>
-            <td>@Hanaq</td>
-            <td>@Hanaq</td>
+        <% end %>
         </tr>
-        <tr>
-            <th>2</th>
-            <td>Taro</td>
-            <td>Qiita</td>
-            <td>@TaroQ</td>
-            <td>@TaroQ</td>
-        </tr>
-         <tr>
-            <th></th>
-            <td>Hanako</td>
-            <td>Qiita</td>
-            <td>@Hanaq</td>
-            <td>@TaroQ</td>
-        </tr>
-    </tbody>
+    </tbody>      
+       
 </table>
