@@ -1,0 +1,21 @@
+<h3>商品詳細</h3>
+
+<!--商品画像-->
+<%= attachment_image_tag @item, :image, fill, 100, 100, fomat:'jpeg' %>
+
+<h2>商品名</h2>
+<p><%= @item.name %></p>
+
+<h2>商品詳細</h2>
+<h2><%= @item.introduction %></h2>
+
+<p>ジャンル</p>
+<p><%= @item.genre %></p>
+
+<h2>税込価格(税抜価格)</h2>
+<p><%= @item.price %></p>
+
+<h2>販売ステータス</h2>
+<p><%= @item.is_active %></p>
+
+<%= link_to "編集する", edit_item_path(@item.id), class: 'btn btn-success' %>
