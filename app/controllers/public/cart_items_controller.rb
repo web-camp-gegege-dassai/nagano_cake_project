@@ -9,7 +9,18 @@ class Public::CartItemsController < Public::ApplicationController
     amount.save
     redirect_to cart_items_path(@cart_item.id)
    end
-  
+   
+   def index
+    @customer = current_customer
+    @cart_item = @customer.cart_item
+   end
+   
+   
+update
+destroy
+destroy_all
+create
+
    private
 
   def cart_item_params
