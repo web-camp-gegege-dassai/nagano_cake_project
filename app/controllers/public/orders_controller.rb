@@ -1,9 +1,11 @@
 class Public::OrdersController < Public::ApplicationController
-  
+
   def new
+    @order = Order.new
+    @address = Address.where(customer: current_customer)
   end
 
-  def confrm
+  def confirm
   end
 
   def complete
