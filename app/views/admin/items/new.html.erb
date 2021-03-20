@@ -3,9 +3,9 @@
   <div id="error_explanation" class="alert alert-danger">
     <h2><%= @item.errors.count %>Save failed due to an error.</h2>
     <ul>
-        <% @item.errors.full_messages.each do |message| %>
+      <% @item.errors.full_messages.each do |message| %>
         <li><%= message %></li>
-        <% end %>
+      <% end %>
     </ul>
   </div>
 <% end %>
