@@ -1,0 +1,38 @@
+<table class="table table-bordered">
+   <thead class="thead-light">
+      　<tr class="active">
+            <th>商品名</th>
+            <th>単価（税込）</th>
+            <th>数量</th>
+            <th>小計</th>
+            <th></th>
+        </tr>
+    </thead>
+    <% @cart_item.each do |cart_item| %>
+    <tbody>
+        <tr>
+            <th>
+              <%= attachment_image_tag cart_item.item, :image, size: "20x30", format: 'jpeg', fallback: "no_image.jpg" %>
+              <%= cart_item.item.name %>
+            </th>
+            <td><%= cart_item.item.price %>*<%= cart_item.amount %>*1.1</td>
+            <td>Qiita</td>
+            <td>@Hanaq</td>
+            <td>@Hanaq</td>
+        </tr>
+        <tr>
+            <th>2</th>
+            <td>Taro</td>
+            <td>Qiita</td>
+            <td>@TaroQ</td>
+            <td>@TaroQ</td>
+        </tr>
+         <tr>
+            <th></th>
+            <td>Hanako</td>
+            <td>Qiita</td>
+            <td>@Hanaq</td>
+            <td>@TaroQ</td>
+        </tr>
+    </tbody>
+</table>

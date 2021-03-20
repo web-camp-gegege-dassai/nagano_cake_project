@@ -11,7 +11,8 @@ class Public::CartItemsController < Public::ApplicationController
    end
    
    def index
-    @customer = current_customer
+    # @customer = current_customer
+    @customer = @Customer.find(params[:id])
     @cart_item = @customer.cart_item
    end
 
@@ -25,7 +26,7 @@ class Public::CartItemsController < Public::ApplicationController
    
    def destroy
      CartItem.find(params[:id]).destroy
-    redirect_back(fallback_location: root_path)
+     redirect_back(fallback_location: root_path)
    end
 
    def destroy_all
