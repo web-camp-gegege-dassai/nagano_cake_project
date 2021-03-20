@@ -16,10 +16,18 @@ class Public::CartItemsController < Public::ApplicationController
    end
    
    
-update
-destroy
-destroy_all
-create
+   def update
+       
+   end
+   
+   def destroy
+       
+   end
+
+   def destroy_all
+       
+   end
+   
 
    private
 
