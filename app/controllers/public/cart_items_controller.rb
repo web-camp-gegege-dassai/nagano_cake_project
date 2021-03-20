@@ -14,18 +14,23 @@ class Public::CartItemsController < Public::ApplicationController
     @customer = current_customer
     @cart_item = @customer.cart_item
    end
-   
-   
+
    def update
-       
+    @cart_item = CartItem.find(params[:id])
+    if @cart_item.update(cart_item_params)
+    flash[:notice] = "You have updated user successfully."
+    redirect_back(fallback_location: root_path)
+    end
    end
    
    def destroy
-       
+     CartItem.find(params[:id]).destroy
+    redirect_back(fallback_location: root_path)
    end
 
    def destroy_all
-       
+      current_customer.cart_item .destroy
+      
    end
    
 

@@ -35,7 +35,7 @@
           <p><%= f.email_field :email, placeholder:"メールアドレス"%></p>
         </div>
         
-        <%= f.submit "編集内容を保存" %>
+        <%= f.submit "編集内容を保存", class: " btn btn-success" %>
       <% end %>
-      <td><%= link_to "退会する", unsubscribe_customers_path(customer.id) %></td>
+      <td><%= link_to "退会する", unsubscribe_customers_path(customer.id),class: "btn btn-danger" %></td>
     </div>
