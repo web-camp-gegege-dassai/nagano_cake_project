@@ -1,31 +1,33 @@
 class Public::CustomersController < Public::ApplicationController
     
    def edit
-      @user = User.find(params[:id])
+     @customer = Customer.find(params[:id])
    end
     
    def show
-     @user = User.find(params[:id])
-     
+     @customer = Customer.find(params[:id])
    end
     
 　 def update
-     @user = User.find(params[:id])
-     if @user.update(user_params)
+     @customer = Customer.find(params[:id])
+     if @Customer.update(customer_params)
       flash[:notice] = "You have updated user successfully."
-      redirect_to user_path(@user.id)
+      redirect_to customers_my_page_path(@customer.id)
      else
        render action: :edit
      end
    end
    
    def unsubscribe
+      @customer = Customer.find(params[:id]) 
    end
    
    def withdraw
+    @customer = Customer.find_by(name: params[:name])
+    @customer.update(is_deleted: false)
+    reset_session
+    redirect_to root_path
    end
-   
-   
    
     private
 
