@@ -31,8 +31,8 @@
   </div>
   <div class="form-group">
     <%= f.label "販売ステータス" %>
-    <label><%= f.radio_button :is_active, "販売中" %>販売中</label>
-    <label><%= f.radio_button :is_active, "販売停止中" %>販売停止中</label>
+    <label><%= f.radio_button :is_active, "true" %>販売中</label>
+    <label><%= f.radio_button :is_active, "false" %>販売停止中</label>
   </div>
   <div class="form-group">
     <%= f.submit '変更を保存', class: 'btn btn-success' %>
