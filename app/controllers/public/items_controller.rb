@@ -9,7 +9,6 @@ class Public::ItemsController < Public::ApplicationController
 
     def show
       @item = Item.find(params[:id])
-      @newbook = Book.new
       @cart_item = CartItem.new
     end
 
