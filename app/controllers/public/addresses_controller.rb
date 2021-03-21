@@ -2,11 +2,12 @@ class Public::AddressesController < Public::ApplicationController
 
   def index
     @address = Address.new
-    @addresses = current_customer.address
+    @addresses = Address.all
   end
 
   def create
     address = Address.new(address_params)
+    address.customer_id = current_customer.id
     address.save
     redirect_back(fallback_location: root_path)
   end
@@ -15,20 +16,22 @@ class Public::AddressesController < Public::ApplicationController
     @address = Address.find(params[:id])
   end
 
-  def updete
+  def update
     @address = Address.find(params[:id])
     if @address.update(address_params)
-      redirect_back(fallback_location: root_path)
+      redirect_to addresses_path
     else
       render action: :edit
     end
   end
+ 
+  
+  
   
   def destroy
     address = Address.find(params[:id])
     address.destroy
-    redirect_back(fallback_lacation: root_path)
-    
+    redirect_to addresses_path
   end 
 
 
