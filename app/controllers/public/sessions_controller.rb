@@ -1,14 +1,7 @@
-class Public::SessionsController < Public::ApplicationController
+class Public::SessionsController < Devise::SessionsController
 
-  before_action :authenticate_customer!, except: [:new]
-
-  def new
-  end
-
-  def create
-  end
-
-  def destroy
+  def after_sign_in_path_for(resource)
+    root_path
   end
 
 end
