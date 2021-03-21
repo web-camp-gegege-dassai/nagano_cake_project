@@ -1,7 +1,16 @@
-<td>マイページ</td>
+<div class="container">
+<div class='row'>
+   <div class="col-lg-7">
+      <th>マイページ</th>
+    </div>
+</div>
 
-<td>登録ページ</td>
-<td><%= link_to "編集する", customers_edit_path, class:"btn btn-success" %></td>
+<div class='row'>
+   <div class="col-lg-7">
+    <td>登録する</td>
+    <td><%= link_to "編集する", customers_edit_path(@customer), class:"btn btn-success" %></td>
+  </div>
+</div>
 
 <div class="container">
   <div class='row'>
@@ -37,5 +46,21 @@
         </table>
 　　</div>
 　</div>
+
+<div class='row'>
+   <div class="col-lg-7">
+    <td>配送先</td>
+    <td><%= link_to "一覧を見る", addresses_path, class:"btn btn-primary" %></td>
+  </div>
 </div>
+
+<div class='row'>
+   <div class="col-lg-7">
+    <td>注文履歴</td>
+    <td><%= link_to "一覧を見る", orders_path, class:"btn btn-primary" %></td>
+  </div>
+</div>
+
+</div>
+
 

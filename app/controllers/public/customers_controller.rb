@@ -7,7 +7,7 @@ class Public::CustomersController < Public::ApplicationController
    end
     
    def edit
-    
+     @customer = current_customer
    end
     
    def show
@@ -16,7 +16,7 @@ class Public::CustomersController < Public::ApplicationController
     
   def update
      @customer = Customer.find(params[:id])
-     if @Customer.update(customer_params)
+     if @customer.update(customer_params)
       flash[:notice] = "You have updated user successfully."
       redirect_to customers_my_page_path(@customer.id)
      else

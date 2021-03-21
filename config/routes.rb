@@ -20,18 +20,18 @@ Rails.application.routes.draw do
     resources :items, only: [:index, :show]
 
     get "/customers/my_page" => "customers#show"
-    get "/customers/edit" => "customers#edit"
+    get "/customers/edit/" => "customers#edit"
     get "/customers/unsubscribe" => 'customers#unsubscribe'
     patch "/customers" => "customers#update"
     patch '/customers/withdraw'  => "customers#withdraw"
     
     
-    # resource :customers, only: [:edit, :update] do
-    #   member do
-    #     get 'unsubscribe'
-    #     patch 'withdraw'
-    #   end
-    # end
+    resources :customers, only: [:edit, :update] do
+      member do
+        get 'unsubscribe'
+        patch 'withdraw'
+      end
+    end
 
     resources :cart_items, only: [:index, :update, :destroy, :create] do
       collection do
