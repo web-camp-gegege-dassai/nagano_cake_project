@@ -3,7 +3,6 @@ class Public::CustomersController < Public::ApplicationController
    before_action :authenticate_customer!, except: [:new]
 
    def new
-    
    end
     
    def edit
@@ -29,8 +28,8 @@ class Public::CustomersController < Public::ApplicationController
    end
    
    def withdraw
-    @customer = Customer.find_by(name: params[:name])
-    @customer.update(is_deleted: false)
+    @customer = Customer.find(params[:id]) 
+    @customer.update(is_deleted: true)
     reset_session
     redirect_to root_path
    end

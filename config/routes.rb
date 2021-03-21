@@ -4,13 +4,6 @@ Rails.application.routes.draw do
     sessions: 'admin/sessions'
   }
 
-
-  # devise_for :customers, controllers: {
-  #   registrations: 'public/registrations',
-  #   sessions: 'public/sessions'
-  # }
-  
-
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   scope module: 'public' do
     root to: "homes#top"
@@ -20,11 +13,7 @@ Rails.application.routes.draw do
     resources :items, only: [:index, :show]
 
     get "/customers/my_page" => "customers#show"
-    get "/customers/edit/" => "customers#edit"
-    get "/customers/unsubscribe" => 'customers#unsubscribe'
-    patch "/customers" => "customers#update"
-    patch '/customers/withdraw'  => "customers#withdraw"
-    
+    get "/customers/edit/id" => "customers#edit"
     
     resources :customers, only: [:edit, :update] do
       member do
