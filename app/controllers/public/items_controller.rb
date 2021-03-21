@@ -3,6 +3,7 @@ class Public::ItemsController < Public::ApplicationController
   
     def index
       @items = Item.all
+      @items = Item.all.page(params[:page]).per(8)
       @items = Item.page(params[:page]).reverse_order
       @items = Item.page(params[:page]).per(8)
     end
@@ -13,10 +14,11 @@ class Public::ItemsController < Public::ApplicationController
     end
 
 
-     private
-     def item_params
-      params.require(:item).permit(:name, :introduction, :price, :image)
-     end
+    private
+    
+    def item_params
+     params.require(:item).permit(:name, :introduction, :price, :image)
+    end
 
   
 end
