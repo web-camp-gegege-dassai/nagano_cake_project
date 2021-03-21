@@ -1,7 +1,7 @@
 <td>マイページ</td>
 
 <td>登録ページ</td>
-<td><%= link_to "編集する", edit_customers_path(@customer.id), class="btn btn-success" %></td>
+<td><%= link_to "編集する", customers_edit_path, class:"btn btn-success" %></td>
 
 <div class="container">
   <div class='row'>
@@ -39,8 +39,3 @@
 　</div>
 </div>
 
-<td>配送先</td>
-<td><%= link_to "編集する", edit_customers_path(@customer.id), class: " btn btn-primary" %></td>
-
-<td>注文履歴</td>
-<td><%= link_to "編集する", edit_customers_path(@customer.id), class: "btn btn-primary" %></td>

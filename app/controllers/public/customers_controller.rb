@@ -1,14 +1,20 @@
 class Public::CustomersController < Public::ApplicationController
+
+   before_action :authenticate_customer!, except: [:new]
+
+   def new
+    
+   end
     
    def edit
-     @customer = Customer.find(params[:id])
+    
    end
     
    def show
-     @customer = Customer.find(params[:id])
+     @customer = current_customer
    end
     
-　 def update
+  def update
      @customer = Customer.find(params[:id])
      if @Customer.update(customer_params)
       flash[:notice] = "You have updated user successfully."
@@ -16,7 +22,7 @@ class Public::CustomersController < Public::ApplicationController
      else
        render action: :edit
      end
-   end
+  end
    
    def unsubscribe
       @customer = Customer.find(params[:id]) 
@@ -35,7 +41,5 @@ class Public::CustomersController < Public::ApplicationController
      params.require(:customer).permit(:last_name, :first_name, :last_name_kana, :first_name_kana, :email, :postal_code, :address, :telephone_number, :is_deleted)
     end
 
-    
-    
-    
+
 end
