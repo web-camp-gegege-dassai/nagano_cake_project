@@ -29,8 +29,8 @@ class Public::CartItemsController < Public::ApplicationController
    end
 
    def destroy_all
-      current_customer.cart_item .destroy
-      
+      @cart_item= current_cart_item
+      @cart_item.destroy
    end
    
 
