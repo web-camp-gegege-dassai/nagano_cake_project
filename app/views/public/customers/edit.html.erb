@@ -6,11 +6,12 @@
     <div class="account-page-title">
        <h1>会員編集画面</h1>
     </div>
-  
-    <%= form_with model:@customer, local:true do |f| %>
+    
+  　<%= form_with model: @customer, local:true do |f| %>
+   
         <div class="form-group">
           <label for="inputName">氏名</label>
-          <th><%= f.text_field :last_name, autofocus: true, id:"inputName", placeholder:"姓"%>
+          <%= f.text_field :last_name, autofocus: true, id:"inputName", placeholder:"姓"%>
           <%= f.text_field :first_name, placeholder:"名"%>
         </div>
         
@@ -41,7 +42,7 @@
         </div>
         
         <%= f.submit "編集内容を保存", class: " btn btn-success" %>
-        <%= link_to "退会する", unsubscribe_customer_path(@customer), class: "btn btn-danger"%>
+        <%= link_to "退会する", customers_unsubscribe_path, class: "btn btn-danger"%>
      <% end %>
       
     </div>

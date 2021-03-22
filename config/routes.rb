@@ -13,7 +13,8 @@ Rails.application.routes.draw do
     resources :items, only: [:index, :show]
 
     get "/customers/my_page" => "customers#show"
-    get "/customers/edit/id" => "customers#edit"
+    get "/customers/edit" => "customers#edit"
+    get "/customers/unsubscribe" => "customers#unsubscribe"
     
     resources :customers, only: [:edit, :update] do
       member do

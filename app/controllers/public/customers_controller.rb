@@ -7,6 +7,7 @@ class Public::CustomersController < Public::ApplicationController
     
    def edit
      @customer = current_customer
+     
    end
     
    def show
@@ -24,7 +25,7 @@ class Public::CustomersController < Public::ApplicationController
    end
    
    def unsubscribe
-      @customer = Customer.find(params[:id]) 
+      @customer = current_customer
    end
    
    def withdraw
