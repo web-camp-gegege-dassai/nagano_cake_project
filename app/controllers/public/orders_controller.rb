@@ -1,6 +1,6 @@
 class Public::OrdersController < Public::ApplicationController
   # before_action :ensure_correct_order, only: [:show]
-  
+
   def new
     @order = Order.new
     @address = Address.where(customer: current_customer)
@@ -15,19 +15,19 @@ class Public::OrdersController < Public::ApplicationController
     @order.shipping_cost = 800
     @order.total_payment = billing(@order)
     @selected_address = params[:order][:shipping_address]
-    
+
 
     if @selected_address == "my_address"
       @order.postal_code = current_customer.postal_code
       @order.address = current_customer.address
       @order.name = current_customer.name
-      
+
     elsif @selected_address == "registered_address"
       registered = Address.find(params[:order][:address_id])
       @order.postal_code = registered.postal_code
       @order.address = registered.address
       @order.name = registered.name
-      
+
     elsif @selected_address == "new_address"
       @order.postal_code = params[:order][:postal_code]
       @order.address = params[:order][:address]
@@ -42,11 +42,11 @@ class Public::OrdersController < Public::ApplicationController
 
   def create
     @order = current_customer.orders.create(order_params)
-    
+
     if params[:order][:address_new] == "1"
       current_customer.address.create(address_params)
     end
-    
+
     @cart_items = current_customer.cart_items
     @cart_items.each do |cart_item|
       OrderDetail.create(
@@ -66,14 +66,15 @@ class Public::OrdersController < Public::ApplicationController
 
   def show
     @order = Order.find(params[:id])
+    @order_details = @order.order_details
   end
 
   private
-  
+
   def order_params
     params.require(:order).permit(:postal_code, :address, :name, :payment_method, :total_price)
   end
-  
+
   def address_params
     params.require(:order).permit(:postal_code, :adress, :name)
   end
