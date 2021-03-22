@@ -9,6 +9,7 @@ class Public::ItemsController < Public::ApplicationController
       @item = Item.find(params[:id])
       @cart_item = CartItem.new
     end
+    
 
 
     private
