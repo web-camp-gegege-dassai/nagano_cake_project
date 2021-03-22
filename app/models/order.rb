@@ -4,4 +4,8 @@ class Order < ApplicationRecord
   
   enum payment_method: {"クレジットカード": 0, "銀行振り込み": 1}
   
+  def billing(order)
+    total_price(current_cart) + order.shipping_cost
+  end
+  
 end

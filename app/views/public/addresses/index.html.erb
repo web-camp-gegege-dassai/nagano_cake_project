@@ -1,12 +1,13 @@
-
+binding.pry
 <div class='container pt-5'>
   <div class="row">
     <h3 class='col-12 offset-1 mb-5'>配送先登録/一覧</h3>
   </div>
+  
   <div class='row'>
     <%= render "create", address: @address, btn: "新規登録"%>
   </div>
 <div>
-  <% render "index_addresses", addresses: @addresses%>
+  <%= render "index_addresses", addresses: @addresses%>
 </div>
 
