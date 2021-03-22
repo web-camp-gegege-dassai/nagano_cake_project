@@ -2,10 +2,7 @@ class Public::ItemsController < Public::ApplicationController
   before_action :authenticate_customer!,except: [:index, :show]
   
     def index
-      @items = Item.all
       @items = Item.all.page(params[:page]).per(8)
-      @items = Item.page(params[:page]).reverse_order
-      @items = Item.page(params[:page]).per(8)
     end
 
     def show

@@ -12,7 +12,7 @@ class Public::CartItemsController < Public::ApplicationController
    
    def index
     @customer = current_customer
-    @cart_item = @customer.cart_items
+    @cart_items = @customer.cart_items
    end
 
    def update
