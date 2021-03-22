@@ -12,10 +12,10 @@
   <tbody>
     <% @customers.each do |customer| %>
       <tr>
-        <td><%= link_to customer.id %></td>
-        <td><%= link_to customer.name %></td>
-        <td><%= link_to customer.email %></td>
-        <td><%= link_to item.is_deleted %></td>
+        <td><%= customer.id %></td>
+        <td><%= customer.name %></td>
+        <td><%= customer.email %></td>
+        <td><%= customer.is_deleted %></td>
       </tr>
     <%end%>
     <%= paginate @customers %>

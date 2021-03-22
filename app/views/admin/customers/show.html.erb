@@ -22,7 +22,7 @@
 <p><%= @customer.email %></p>
 
 <h2>会員ステータス</h2>
-<p><%= @customer.is_deleted %></p>
+<p><%#= @customer.is_deleted, class: 'success' %></p>
 
 <%= link_to "編集する", edit_admin_customer_path(@customer.id), class: 'btn btn-success' %>
-<%#= link_to "注文履歴一覧を見る", class: 'btn btn-success' %>
+<%#= link_to "注文履歴一覧を見る", class: 'btn btn-primary' %>
