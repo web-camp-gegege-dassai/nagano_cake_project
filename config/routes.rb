@@ -16,6 +16,8 @@ Rails.application.routes.draw do
     get "/customers/my_page" => "customers#show"
     get "/customers/edit" => "customers#edit"
     get "/customers/unsubscribe" => "customers#unsubscribe"
+    patch '/customers/withdraw'  => "customers#withdraw"
+    
     
     resources :customers, only: [:edit, :update] do
       member do

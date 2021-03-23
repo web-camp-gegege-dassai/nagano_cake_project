@@ -7,7 +7,6 @@ class Public::CustomersController < Public::ApplicationController
     
    def edit
      @customer = current_customer
-     
    end
     
    def show
@@ -15,10 +14,10 @@ class Public::CustomersController < Public::ApplicationController
    end
     
    def update
-     @customer = Customer.find(params[:id])
+     @customer = current_customer
      if @customer.update(customer_params)
       flash[:notice] = "You have updated user successfully."
-      redirect_to customers_my_page_path(@customer.id)
+      redirect_to customers_my_page_path
      else
        render action: :edit
      end
@@ -29,7 +28,7 @@ class Public::CustomersController < Public::ApplicationController
    end
    
    def withdraw
-    @customer = Customer.find(params[:id]) 
+    @customer = current_customer
     @customer.update(is_deleted: true)
     reset_session
     redirect_to root_path
