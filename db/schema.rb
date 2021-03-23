@@ -42,6 +42,7 @@ ActiveRecord::Schema.define(version: 2021_03_17_131009) do
   end
 
   create_table "customers", force: :cascade do |t|
+
     t.string "email"
     t.string "encrypted_password"
     t.string "reset_password_token"
