@@ -58,6 +58,8 @@ class Public::OrdersController < Public::ApplicationController
         )
     end
     @cart_items.destroy_all
+
+    redirect_to conplete_orders_path
   end
 
   def index
@@ -84,3 +86,9 @@ class Public::OrdersController < Public::ApplicationController
   # end
 
 end
+
+
+
+
+
+
