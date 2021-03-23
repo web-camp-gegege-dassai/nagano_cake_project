@@ -1,4 +1,6 @@
-<h3>商品新規登録</h3>
+<h3 class="bg-light m-5 px-25 w-25 text-center">商品新規登録</h3><br>
+
+<!--バリデーション-->
 <% if @item.errors.any? %>
   <div id="error_explanation" class="alert alert-danger">
     <h2><%= @item.errors.count %>Save failed due to an error.</h2>
@@ -9,7 +11,9 @@
     </ul>
   </div>
 <% end %>
-<div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
+
+<div class="container">
+  <div class="row form-group">
 <%= form_with model:@item, url:'/admin/items', local:true do |f| %>
   <div class="form-group">
     <%= f.label "商品画像" %>
@@ -41,3 +45,5 @@
   </div>
   </div>
 <% end %>
+</div>
+</div>
