@@ -4,11 +4,6 @@ Rails.application.routes.draw do
     sessions: 'admin/sessions'
   }
 
-  devise_for :customers, controllers: {
-    registrations: 'public/registrations',
-    sessions: 'public/sessions'
-  }
-  
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   scope module: 'public' do
@@ -19,8 +14,10 @@ Rails.application.routes.draw do
     resources :items, only: [:index, :show]
 
     get "/customers/my_page" => "customers#show"
-
-    resource :customers, only: [:edit, :update] do
+    get "/customers/edit" => "customers#edit"
+    get "/customers/unsubscribe" => "customers#unsubscribe"
+    
+    resources :customers, only: [:edit, :update] do
       member do
         get 'unsubscribe'
         patch 'withdraw'
@@ -42,6 +39,11 @@ Rails.application.routes.draw do
 
     resources :addresses, except: [:show, :new]
   end
+  
+ devise_for :customers, controllers: {
+    registrations: 'public/registrations',
+    sessions: 'public/sessions'
+  }
 
   namespace :admin do
     get "/" => "homes#top"
