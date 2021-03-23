@@ -11,7 +11,6 @@ class Public::ItemsController < Public::ApplicationController
     end
     
 
-
     private
     
     def item_params

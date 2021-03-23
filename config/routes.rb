@@ -10,8 +10,17 @@ Rails.application.routes.draw do
     root to: "homes#top"
 
     get "/about" => "homes#about"
+    
 
-    resources :items, only: [:index, :show]
+    resources :items, only: [:index, :show] do
+     resources :cart_items, only: [:index, :update, :destroy, :create] do
+      collection do
+        delete 'destroy_all'
+      end
+    end
+  end
+    
+    
 
     get "/customers/my_page" => "customers#show"
     get "/customers/edit" => "customers#edit"
@@ -25,6 +34,8 @@ Rails.application.routes.draw do
         patch 'withdraw'
       end
     end
+    
+    
 
     resources :cart_items, only: [:index, :update, :destroy, :create] do
       collection do
