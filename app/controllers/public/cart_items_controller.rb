@@ -1,7 +1,6 @@
 class Public::CartItemsController < Public::ApplicationController
   
    def create
-    @item = Item.find(params[:item_id])
     amount = @item.cart_items.new(cart_item_params)
     amount.item_id = @item.id
     amount.customer_id = current_customer.id
