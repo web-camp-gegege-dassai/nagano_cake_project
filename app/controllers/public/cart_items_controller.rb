@@ -6,10 +6,11 @@ class Public::CartItemsController < Public::ApplicationController
     amount.item_id = @item.id
     amount.customer_id = current_customer.id
     amount.save
-    redirect_to cart_items_path(@cart_item.id)
+    redirect_to cart_items_path(@cart_item)
    end
    
    def index
+    @cart_items = current_customer.cart_items
     @customer = current_customer
     @cart_items = @customer.cart_items
    end
