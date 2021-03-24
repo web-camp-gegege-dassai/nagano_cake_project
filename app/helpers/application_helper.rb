@@ -14,7 +14,7 @@ module ApplicationHelper
   def tax_price(price)
    (price * 1.1).floor
   end
-  
+
   def sub_price(sub)
     (tax_price(sub.item.price) * sub.amount)
   end
@@ -26,8 +26,11 @@ module ApplicationHelper
     end
     return price
   end
-  
-  
-  
+
+  def billing(order)
+    current_cart = current_customer.cart_items
+    total_price(current_cart) + order.shipping_cost
+  end
+
 
 end

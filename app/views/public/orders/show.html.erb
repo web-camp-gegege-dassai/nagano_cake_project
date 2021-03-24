@@ -24,12 +24,12 @@
         </tr>
         <tr>
           <th>ステータス</th>
-          <tb><% @order.order_status %></tb>
+          <tb><% @order.status %></tb>
         </tr>
       </tbody>
     </table>
-    
-    
+
+
     <h4>請求情報</h4>
     <table>
       <tbody>
@@ -42,10 +42,10 @@
         <th>ご請求額</th>
         <tb><%= @order.total_payment %></tb>
       </tbody>
-      
+
     </table>
   </div>
-  
+
   <div class="row">
     <table>
       <thead>
