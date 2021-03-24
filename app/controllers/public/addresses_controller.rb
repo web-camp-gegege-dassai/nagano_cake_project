@@ -1,8 +1,10 @@
 class Public::AddressesController < Public::ApplicationController
 
+  before_action :authenticate_customer!
+  
   def index
     @address = Address.new
-    @addresses = Address.all
+    @addresses = current_customer.addresses
   end
 
   def create

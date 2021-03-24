@@ -4,17 +4,14 @@ Rails.application.routes.draw do
     sessions: 'admin/sessions'
   }
 
-
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   scope module: 'public' do
     root to: "homes#top"
 
     get "/about" => "homes#about"
     
-
     resources :items, only: [:index, :show] 
      
-
     get "/customers/my_page" => "customers#show"
     get "/customers/edit" => "customers#edit"
     get "/customers/unsubscribe" => "customers#unsubscribe"

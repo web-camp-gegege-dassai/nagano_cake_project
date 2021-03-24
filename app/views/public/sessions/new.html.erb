@@ -9,7 +9,7 @@
     <%= render "devise/shared/error_messages", resource: resource %>
   <div class="field pt-5 text-center">
     <%= f.label :email, 'メールアドレス', class: "mx-3" %>
-    <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "col-4" %>
+    <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "col-4", placeholder: "sample@example.com" %>
   </div>
 
   <div class="field mt-3 mb-4 text-center">
