@@ -1,5 +1,6 @@
 class Public::OrdersController < Public::ApplicationController
   # before_action :ensure_correct_order, only: [:show]
+  include ApplicationHelper
 
   def new
     @order = Order.new
@@ -13,14 +14,16 @@ class Public::OrdersController < Public::ApplicationController
       payment_method: params[:order][:payment_method]
     )
     @order.shipping_cost = 800
+
     @order.total_payment = billing(@order)
+
     @selected_address = params[:order][:shipping_address]
 
 
     if @selected_address == "my_address"
       @order.postal_code = current_customer.postal_code
       @order.address = current_customer.address
-      @order.name = current_customer.name
+      @order.name = current_customer.last_name + current_customer.first_name
 
     elsif @selected_address == "registered_address"
       registered = Address.find(params[:order][:address_id])
@@ -41,7 +44,8 @@ class Public::OrdersController < Public::ApplicationController
   end
 
   def create
-    @order = current_customer.orders.create(order_params)
+    @order = current_customer.orders.new(order_params)
+    @order.save
 
     if params[:order][:address_new] == "1"
       current_customer.address.create(address_params)
@@ -59,7 +63,7 @@ class Public::OrdersController < Public::ApplicationController
     end
     @cart_items.destroy_all
 
-    redirect_to conplete_orders_path
+    redirect_to complete_orders_path
   end
 
   def index
@@ -74,7 +78,7 @@ class Public::OrdersController < Public::ApplicationController
   private
 
   def order_params
-    params.require(:order).permit(:postal_code, :address, :name, :payment_method, :total_price)
+    params.require(:order).permit(:postal_code, :address, :name, :payment_method, :total_payment)
   end
 
   def address_params
