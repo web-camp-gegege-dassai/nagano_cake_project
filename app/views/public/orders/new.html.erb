@@ -1,7 +1,7 @@
-<div class='container pt-5'>
+<div class='container pt-5 pb-4 mb-5'>
   <div class="row">
     <h3 class='col-3 mb-5 mx-auto text-center bg-secondary text-white'>注文情報入力</h3>
-    <div class="col-12 border border-danger">
+    <div class="col-12 border border-danger mb-5">
       <%= form_with model:@order, url:confirm_orders_path, method: :post, local: true do |f| %>
 
         <h4 class="mb-3 mt-4">支払い方法</h4>
@@ -24,7 +24,7 @@
 
           <div class="registered_address">
             <% unless @address == nil %>
-              <% f.radio_button :shipping_address, "registered_address" %>登録済み住所から選択<br>
+              <%= f.radio_button :shipping_address, "registered_address" %>登録済み住所から選択<br>
               <div class="row">
 
               <span class="offset-1 col-11 mt-2 mb-2">
