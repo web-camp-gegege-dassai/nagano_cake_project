@@ -14,10 +14,11 @@ class Admin::CustomersController < Admin::ApplicationController
   
   def update
     @customer = Customer.find(params[:id])
+    current_admin && !current_customer
     if @customer.update(customer_params)
-      redirect_to admin_customers_path
+      redirect_to admin_customer_path
     else
-      render :index
+      render :show
     end
   end
 
