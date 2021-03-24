@@ -21,7 +21,7 @@ module ApplicationHelper
 
   def total_price(totals)
     price = 0
-    total_price(totals).each do |total|
+    totals.each do |total|
         price  +=  sub_price(total)
     end
     return price

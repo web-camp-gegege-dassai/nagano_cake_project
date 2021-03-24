@@ -11,7 +11,6 @@ class Public::CartItemsController < Public::ApplicationController
    
    def index
     @cart_items = current_customer.cart_items
-    
     @customer = current_customer
     @cart_items = @customer.cart_items
    end
