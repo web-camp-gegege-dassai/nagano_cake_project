@@ -19,6 +19,8 @@
         <% @cart_items.each do |cart_item|%>
           <tr>
             <td>
+
+              <%= attachment_image_tag(cart_item.item, :image, :fill, 30, 30, format: "jpeg")%><br>
               <%= cart_item.item.name %>
             </td>
             <!--単価（税込）-->
@@ -54,14 +56,14 @@
 
   <div class="row">
     <h5>支払い方法</h5>
-    <p><%= @order.payment_method %></p>
+    <p>&emsp;&emsp;<%= @order.payment_method %></p>
   </div>
 
 
   <div class="row border-bottom mb-4 border-warning">
     <h5>お届け先</h5>
     <p>
-      <%= "#{@order.postal_code} #{@order.address}" %><br>
+      &emsp;&emsp;〒<%= @order.postal_code %>&emsp;<%= @order.address %><br>
       <%= @order.name %>
     </p>
   </div>
