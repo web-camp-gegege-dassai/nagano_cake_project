@@ -26,5 +26,8 @@ module ApplicationHelper
     end
     return price
   end
+  
+  
+  
 
 end
