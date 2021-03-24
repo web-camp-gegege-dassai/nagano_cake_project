@@ -1,7 +1,12 @@
 <div class="container">
-　<div class='row'>
-   <div class="col-lg-12">
-
+    <div class='row'>
+     <div class="col-lg-10">
+      <h3 class="">ショッピングカート</h3>
+     </div>
+     <div class="col-lg-2">
+       <%= link_to "カートを空にする", destroy_all_cart_items_path, method: :delete, remote: true, class: "btn btn-danger" %>
+     </div>
+    </div>
 
 <table class="table table-bordered">
    <thead class="thead-light">
@@ -19,16 +24,13 @@
           
         <% @cart_items.each do |cart_item| %>
         <tr>
-            <td>
+           　 <td>
               <%= attachment_image_tag cart_item.item, :image, size: "50x40", format: 'jpeg', fallback: "no_image.jpg" %>
               <%= cart_item.item.name %>
-            </td>
-            
-            <td>
+           　 </td>
+           　 <td>
               <%= tax_price(cart_item.item.price).to_s(:delimited) %>
-            </td>
-       
-            
+            　</td>
               <%= form_with model: cart_item, local:true do |f| %>
               <td>
                <%= f.select :amount, [0,1,2,3,4,5,6,7,8,9,10], {size: 30,include_blank: '個数選択'}, { class: 'form-control' , required: true } %>
@@ -55,33 +57,41 @@
 
    </table>
     
-    <td>
-      <%= link_to "買い物を続ける", root_path, class:"btn btn-primary" %>
-    </td> 
-    
-    
- 
-  
-  <table class="table">
-    <tr>
-      <th>  
-        <h3>
-           合計金額
-        </h3>
-      </th> 
-      <th>  
-        <h3>
-           <%= total_price(@cart_items).to_s(:delimited) %>
-        </h3>
-      </th> 
-    </tr>
-  </table>
-  
-   <td>
-      <%= link_to "情報入力に進む", new_order_path, class:"btn btn-success" %>
-  </td>
+    <div class="container">
+     <div class='row mt-4 mb-4'>
+      <div class="col-lg-9">
+       <td>
+         <%= link_to "買い物を続ける", root_path, class:"btn btn-primary" %>
+       </td>
+      </div>
+      
+      <div class="col-lg-3">
+          
+          <table class="table table-bordered">
+            <tr>
+              <th>  
+                <h5>
+                   合計金額
+                </h5>
+              </th> 
+              <th>  
+                <h5>
+                   <%= total_price(@cart_items).to_s(:delimited) %>
+                </h5>
+              </th> 
+            </tr>
+          </table>
+          </div>
+          </div>
+          </div>
+          
+          <div class='row mb-5 '>
+           <div class= "px-12 mx-auto">
+               <td>
+                  <%= link_to "情報入力に進む", new_order_path, class:"btn btn-success" %>
+               </td>
+            </div>
+          </div>
+</div>
 
 
-</div>
-</div>
-</div>

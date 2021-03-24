@@ -24,11 +24,11 @@ class Public::CartItemsController < Public::ApplicationController
    end
 
    def destroy_all
-      @cart_item= current_cart_item
-      @cart_item.destroy
+      @cart_item= current_customer.cart_items
+      @cart_item.destroy_all
+      redirect_back(fallback_location: root_path)
    end
-   
-
+  
    private
 
   def cart_item_params
