@@ -19,7 +19,6 @@ class Customer < ApplicationRecord
   validates :encrypted_password, presence: true
   
   # 会員ステータス
-  enum is_deleted: { '有効': true, '退会': false }
-
+  enum is_deleted: { '有効': false, '退会': true}
 
 end

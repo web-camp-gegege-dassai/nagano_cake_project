@@ -78,8 +78,7 @@
         <p>会員ステータス</p>
       </div>
       <div class="col-lg-2">
-        <label><%= f.radio_button :is_deleted, :有効 %>有効</label>
-        <label><%= f.radio_button :is_deleted, :退会 %>退会</label>
+        <%= @customer.is_deleted %>
       </div>
     </div>
 　<% end %>
