@@ -20,7 +20,7 @@
              </div>
              
              
-              
+          <% if customer_signed_in? %>  
               <%= form_with model: @cart_item, local:true do |f| %>
                 <div class="col">
                 <%= f.hidden_field :item_id, :value => @item.id %>
@@ -30,6 +30,7 @@
                 <%= f.submit 'カートに入れる',class:"btn btn-outline-success" %>
                 </div>
               <% end %>
+          <% end %>
          
           </div>
     
