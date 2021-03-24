@@ -2,4 +2,25 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+.background-top {
+  background-image: image-url('top.jpg');
+  background-size: cover;
+  width: 800px;
+  height: 400px;
+  display: flex;
+  justify-content: center;
+}
 
+.background-text {
+  background-color: #ffffff;
+  width: 400px;
+  height: 150px;
+  margin: auto 0;
+}
+
+.background-about {
+  background-image: image-url('about.jpg');
+  background-size: cover;
+  width: 400px;
+  height: 200px;
+}
