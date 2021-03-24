@@ -14,12 +14,12 @@
   <tbody>
     <% @order_details.each do |order_detail| %>
       <tr>
-        <%=link_to admin_order_path(order.id) do %>
+        <%=link_to admin_order_path(order_detail.id) do %>
           <td><%= order_detail.created_at %></td>
         <% end %>
           <td><%= order_detail.order.name %></td>
           <td><%= order_detail.amount %></td>
-          <td><%= order.item.is_active %></td>
+          <td><%= order_detail.item.is_active %></td>
       </tr>
     <% end %>
   </tbody>
