@@ -46,6 +46,7 @@ class Public::OrdersController < Public::ApplicationController
   def create
     @order = current_customer.orders.new(order_params)
     @order.save
+    redirect_to complete_orders_path
 
     if params[:order][:address_new] == "1"
       current_customer.address.create(address_params)
@@ -62,8 +63,6 @@ class Public::OrdersController < Public::ApplicationController
         )
     end
     @cart_items.destroy_all
-
-    redirect_to complete_orders_path
   end
 
   def index
@@ -90,9 +89,5 @@ class Public::OrdersController < Public::ApplicationController
   # end
 
 end
-
-
-
-
 
 
