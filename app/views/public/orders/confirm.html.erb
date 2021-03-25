@@ -4,7 +4,7 @@
     <div class="row">
       <h3 class='col-3 mb-5 mx-auto text-center bg-secondary text-white'>注文情報確認画面</h3>
     </div>
-  
+
     <div class="row border-bottom mb-4 border-warning">
       <table class="table table-bordered col-7">
         <thead class="table-warning">
@@ -15,7 +15,7 @@
             <th>小計</th>
           </tr>
         </thead>
-  
+
         <tbody>
           <% @cart_items.each do |cart_item|%>
             <tr>
@@ -32,7 +32,7 @@
           <% end %>
         </tbody>
       </table>
-  
+
       <table class="table col-4 offset-1 table-bordered">
         <thead>
           <tr>
@@ -40,7 +40,7 @@
             <th><%= @order.shipping_cost %></th>
           </tr>
         </thead>
-  
+
         <tbody>
           <tr>
             <td class="table-warning">商品合計</td>
@@ -53,13 +53,13 @@
         </tbody>
       </table>
     </div>
-  
+
     <div class="row">
       <h5>支払い方法</h5>
       <p>&emsp;&emsp;<%= @order.payment_method %></p>
     </div>
-  
-  
+
+
     <div class="row border-bottom mb-4 border-warning">
       <h5>お届け先</h5>
       <p>
@@ -67,7 +67,7 @@
         &emsp;&emsp;<%= @order.name %>
       </p>
     </div>
-  
+
     <%= form_with model: @order, local:true do |f| %>
       <div class="row">
         <%= f.hidden_field :postal_code %>
@@ -87,3 +87,6 @@
       <p><%= link_to "商品一覧", items_path %>から商品をお探し下さい。</p>
   <% end %>
 </div>
+
+
+
