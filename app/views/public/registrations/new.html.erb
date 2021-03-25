@@ -1,73 +1,75 @@
 <h4 class="bg-light m-5 px-5 w-25 text-center">新規会員登録</h4>
 
+<div class="container">
+
 <%= form_with model: @customer, url: customer_registration_path, local:true do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
+  <div class="row">
+    <%= render "devise/shared/error_messages", resource: resource %>
+  </div>
 
-  <div class="container">
-
-    <div class="row form-group">
-      <p class="col-3">名前</p>
-      <div class="col-4">
-        <%= f.label :last_name, '(姓)' %>
-        <%= f.text_field :last_name, autofocus: true, class: "ml-3", placeholder: "令和" %>
-      </div>
-      <div class="col-4 mr-5">
-        <%= f.label :first_name, '(名)' %>
-        <%= f.text_field :first_name, autofocus: true, class: "ml-3", placeholder: "道子" %>
-      </div>
+  <div class="row form-group">
+    <p class="col-3">名前</p>
+    <div class="col-4">
+      <%= f.label :last_name, '(姓)' %>
+      <%= f.text_field :last_name, autofocus: true, class: "ml-3", placeholder: "令和" %>
     </div>
-
-    <div class="row form-group">
-      <p class="col-3">フリガナ</p>
-      <div class="col-4 pl-3">
-        <%= f.label :last_name_kana, '(セイ)' %>
-        <%= f.text_field :last_name_kana, autofocus: true, placeholder: "レイワ" %>
-      </div>
-      <div class="col-4 mr-5">
-        <%= f.label :first_name_kana, '(メイ)' %>
-        <%= f.text_field :first_name_kana, autofocus: true, placeholder: "ミチコ" %>
-      </div>
+    <div class="col-4 mr-5">
+      <%= f.label :first_name, '(名)' %>
+      <%= f.text_field :first_name, autofocus: true, class: "ml-3", placeholder: "道子" %>
     </div>
+  </div>
 
-    <div class="row form-group">
-      <%= f.label :email, 'メールアドレス', class: "col-3" %>
-      <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "col-xs-3 ml-5 pr-3", placeholder: "sample@example.com" %>
-      <p class="col"></p>
+  <div class="row form-group">
+    <p class="col-3">フリガナ</p>
+    <div class="col-4 pl-3">
+      <%= f.label :last_name_kana, '(セイ)' %>
+      <%= f.text_field :last_name_kana, autofocus: true, placeholder: "レイワ" %>
     </div>
+    <div class="col-4 mr-5">
+      <%= f.label :first_name_kana, '(メイ)' %>
+      <%= f.text_field :first_name_kana, autofocus: true, placeholder: "ミチコ" %>
+    </div>
+  </div>
 
-    <div class="row form-group">
-      <%= f.label :postal_code, '郵便番号(ハイフンなし)', class: "col-3" %>
-      <%= f.text_field :postal_code, autofocus: true, class: "col-xs-3 ml-5 pr-3", placeholder: "0000000" %>
-      <p class="col"></p>
-    </div>
+  <div class="row form-group">
+    <div class="col-3"><%= f.label :email, 'メールアドレス' %></div>
+    <div class="col-xs-3 ml-5 pr-3"><%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "sample@example.com" %></div>
+    <p class="col-1"></p>
+  </div>
 
-    <div class="row form-group">
-      <%= f.label :address, '住所', class: "col-3" %>
-      <%= f.text_field :address, autofocus: true, class: "col-6 col-xs-3 ml-5 pl-1 pr-3", placeholder: "東京都渋谷区代々木神園町0-0" %>
-    </div>
+  <div class="row form-group">
+    <div class="col-3"><%= f.label :postal_code, '郵便番号(ハイフンなし)' %></div>
+    <div class="col-xs-3 ml-5 pr-3"><%= f.text_field :postal_code, autofocus: true, placeholder: "0000000" %></div>
+    <p class="col-1"></p>
+  </div>
 
-    <div class="row form-group">
-      <%= f.label :telephone_number, '電話番号(ハイフンなし)', class: "col-3" %>
-      <%= f.text_field :telephone_number, autofocus: true, class: "col-xs-3 ml-5 pr-3", placeholder: "0000000000" %>
-      <p class="col"></p>
-    </div>
+  <div class="row form-group">
+    <div class="col-3"><%= f.label :address, '住所' %></div>
+    <div class="col-xs-8 ml-5 pr-3"><%= f.text_field :address, autofocus: true, placeholder: "東京都渋谷区代々木神園町0-0" %></div>
+  </div>
 
-    <div class="row form-group">
-      <div class="col-3">
-        <%= f.label :password, 'パスワード' %>
-        <% if @minimum_password_length %>
-        <em>(<%= @minimum_password_length %> 文字以上)</em>
-        <% end %>
-      </div>
-      <%= f.password_field :password, autocomplete: "new-password", class: "col-xs-3 ml-5 pr-3" %>
-      <p class="col"></p>
-    </div>
+  <div class="row form-group">
+    <div class="col-3"><%= f.label :telephone_number, '電話番号(ハイフンなし)' %></div>
+    <div class="col-xs-3 ml-5 pr-3"><%= f.text_field :telephone_number, autofocus: true, placeholder: "0000000000" %></div>
+    <p class="col-1"></p>
+  </div>
 
-    <div class="row form-group">
-      <%= f.label :password_confirmation, 'パスワード(確認用)', class: "col-3" %>
-      <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "col-xs-3 ml-5 pr-3" %>
-      <p class="col"></p>
+  <div class="row form-group">
+    <div class="col-3">
+      <%= f.label :password, 'パスワード' %>
+      <% if @minimum_password_length %>
+      <em>(<%= @minimum_password_length %> 文字以上)</em>
+      <% end %>
     </div>
+    <div class="col-xs-3 ml-5 pr-3"><%= f.password_field :password, autocomplete: "new-password" %></div>
+    <p class="col-1"></p>
+  </div>
+
+  <div class="row form-group">
+    <div class="col-3"><%= f.label :password_confirmation, 'パスワード(確認用)' %></div>
+    <div class="col-xs-3 ml-5 pr-3"><%= f.password_field :password_confirmation, autocomplete: "new-password" %></div>
+    <p class="col-1"></p>
+  </div>
 
   <div class="actions row form-group">
     <p class="col-3"></p>
