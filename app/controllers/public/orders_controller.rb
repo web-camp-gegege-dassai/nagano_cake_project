@@ -5,6 +5,10 @@ class Public::OrdersController < Public::ApplicationController
 
   def new
     @order = Order.new
+    
+    
+    
+    
     @address = Address.where(customer: current_customer)
   end
 
@@ -78,6 +82,7 @@ class Public::OrdersController < Public::ApplicationController
         price: sub_price(cart_item)
         )
     end
+    
     @cart_items.destroy_all
   end
 
