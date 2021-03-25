@@ -3,7 +3,8 @@
      <div class="col-lg-10">
       <h3 class="">ショッピングカート</h3>
      </div>
-<% if @cart_items_id%>
+     
+<% if @cart_items %>
 
      <div class="col-lg-2">
        <%= link_to "カートを空にする", destroy_all_cart_items_path, method: :delete, remote: true, class: "btn btn-danger" %>
@@ -97,9 +98,7 @@
         
     <% else %>  　
     
-    
-    
-    
+    こんにちは
     <% end %>
 </div>
 
