@@ -1,5 +1,6 @@
 class Public::OrdersController < Public::ApplicationController
   # before_action :ensure_correct_order, only: [:show]
+  before_action :authenticate_customer!
   include ApplicationHelper
 
   def new
@@ -36,6 +37,13 @@ class Public::OrdersController < Public::ApplicationController
       @order.address = params[:order][:address]
       @order.name = params[:order][:name]
       @address_new = 1
+
+      unless @order.valid? == true
+        @address = Address.where(customer: current_customer)
+        flash[:alert] = "有効な配送先住所ではありません。"
+        render :new
+      end
+
     end
   end
 
@@ -46,10 +54,18 @@ class Public::OrdersController < Public::ApplicationController
   def create
     @order = current_customer.orders.new(order_params)
     @order.save
+    flash[:notice] = "ご注文が確定しました。"
     redirect_to complete_orders_path
 
+
     if params[:order][:address_new] == "1"
-      current_customer.address.create(address_params)
+      new_address = Address.new(address_params)
+      new_address.customer_id = current_customer.id
+      new_address.save
+      # unless new_address.save
+      #   flash[:notice] = "有効な住所ではありませんでした。"
+      #   redirect_to new_order_path
+      # end
     end
 
     @cart_items = current_customer.cart_items
@@ -66,7 +82,7 @@ class Public::OrdersController < Public::ApplicationController
   end
 
   def index
-    @orders = current_customer.orders
+    @orders = current_customer.orders.page(params[:page]).per(10).reverse_order
   end
 
   def show
@@ -81,7 +97,7 @@ class Public::OrdersController < Public::ApplicationController
   end
 
   def address_params
-    params.require(:order).permit(:postal_code, :adress, :name)
+    params.require(:order).permit(:postal_code, :address, :name)
   end
 
   # def ensure_correct_order
