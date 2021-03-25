@@ -7,8 +7,13 @@ class Admin::GenresController < Admin::ApplicationController
 
   def create
     genre = Genre.new(genre_params)
-    genre.save
-    redirect_back(fallback_location: root_path)
+    if genre.save
+      flash[:notice] = "新規ジャンルを追加しました。"
+      redirect_back(fallback_location: root_path)
+    else
+      flash[:alert] = "ジャンルが入力されていません。"
+      redirect_back(fallback_location: root_path)
+    end
   end
 
   def edit
@@ -18,9 +23,11 @@ class Admin::GenresController < Admin::ApplicationController
   def update
     @genre = Genre.find(params[:id])
     if @genre.update(genre_params)
-     redirect_to admin_genres_path
+      flash[:notice] = "ジャンルを編集しました。"
+      redirect_to admin_genres_path
     else
-     render :edit
+      flash[:alert] = "ジャンルが入力されていません。"
+      redirect_back(fallback_location: root_path)
     end
   end
 
