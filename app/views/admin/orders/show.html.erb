@@ -8,7 +8,7 @@
         <p>購入者</p>
       </div>
       <div class="col-lg-2">
-        <%= link_to admin_customer_path(customer.id) do %>
+        <%= link_to admin_customer_path(@order.customer.id) do %>
         <%= @order.customer.last_name %><%= @order.customer.first_name %>
         <% end %>
       </div>
@@ -27,7 +27,7 @@
       <div class="col-lg-2">
         <p>配送先</p>
       </div>
-      <div class="col-lg-2">
+      <div class="col-lg-6">
         <label>〒<%= @order.postal_code %></label><%= @order.address %><br>
         <%= @order.name %>
       </div>
@@ -41,15 +41,14 @@
         <%= @order.payment_method %>
       </div>
     </div>
-    
     <!--注文ステータス-->
-    <%= form_with model:@order, local:true do |f| %>
+    <%= form_with model:@order, url: admin_order_path, method: :patch, local:true do |f| %>
       <div class='row mb-1'>
         <div class="col-lg-2">
           <p>注文ステータス</p>
         </div>
-        <div class="col-lg-2">
-          <%= f.collection_select(:status_id, Status.all, :id )%>
+        <div class="col-lg-6">
+          <%= f.select(:status, Order.statuses.keys.to_a) %>
           <%= f.submit '変更',class:"btn btn-outline-success" %>
         </div>
       </div>
@@ -67,7 +66,7 @@
 　　</tr>
 　</thead>
   <tbody>
-　　<% @order_detail.each do |order_detail| %>
+　　<% @order_details.each do |order_detail| %>
       <tr>
         <td>
           <%= order_detail.item.name %>
@@ -78,15 +77,16 @@
         <td>
           <%= order_detail.amount %>
         </td>
-        <!--制作ステータス-->
-        <%= form_with model: order_detail, local:true do |f| %>
         <td>
           <%= sub_price(order_detail).to_s(:delimited) %>
         </td>
-        <td> 
-          <%= f.submit '変更', class:"btn btn-outline-success" %>
+        <td>
+          <!--制作ステータス-->
+          <%= form_with model:order_detail, url: admin_order_order_detail_path(@order, order_detail), method: :patch, local:true do |f| %>
+            <%= f.select(:making_status, OrderDetail.making_statuses.keys.to_a) %>
+            <%= f.submit '変更', class:"btn btn-outline-success" %>
+          <% end %>
         </td>
-        <% end %>
       </tr>
     <% end %>
    </tbody>
@@ -96,7 +96,7 @@
     <tbody>
       <tr>
         <th>商品合計</th>
-        <td><%= total_price(@order_detail).to_s(:delimited) %></td>
+        <td><%= total_price(@order_details).to_s(:delimited) %></td>
       </tr>
       <tr>
         <th>送料</th>

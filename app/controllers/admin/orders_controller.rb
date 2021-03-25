@@ -8,8 +8,10 @@ class Admin::OrdersController < Admin::ApplicationController
   def update
     @order = Order.find(params[:id])
     if @order.update(order_params)
-      redirect_to admin_customer_path
+      flash[:notice] = "変更しました。"
+      redirect_to admin_order_path
     else
+      flash[:alert] = "変更しました。"
       render :show
     end
   end
@@ -17,11 +19,7 @@ class Admin::OrdersController < Admin::ApplicationController
   private
 
   def order_params
-    params.require(order).permit(:customer_id, :postal_code, :address, :name, :shipping_cost, :total_payment, :payment_method, :status)
+    params.require(:order).permit(:customer_id, :postal_code, :address, :name, :shipping_cost, :total_payment, :payment_method, :status)
   end
-  
-  # def order_detail_params
-  #   params.require(order_detail).permit(:order_id, :item_id, :price, :amount, :making_status)
-  # end
   
 end
