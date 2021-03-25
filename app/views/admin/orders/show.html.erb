@@ -3,13 +3,14 @@
 </div>
 
 <div class='container'>
-  <%= form_with model:@order, url: admin_order_path(@order.id), local:true do |f| %>
     <div class='row mb-1'>
       <div class="col-lg-2">
         <p>購入者</p>
       </div>
       <div class="col-lg-2">
-        <%= @order.customer_id %>
+        <%= link_to admin_customer_path(customer.id) do %>
+        <%= @order.customer.last_name %><%= @order.customer.first_name %>
+        <% end %>
       </div>
     </div>
 
@@ -42,7 +43,7 @@
     </div>
     
     <!--注文ステータス-->
-    <%= form_with model: cart_item, local:true do |f| %>
+    <%= form_with model:@order, local:true do |f| %>
       <div class='row mb-1'>
         <div class="col-lg-2">
           <p>注文ステータス</p>
@@ -83,8 +84,9 @@
           <%= sub_price(order_detail).to_s(:delimited) %>
         </td>
         <td> 
-          <%= f.submit '変更',class:"btn btn-outline-success" %>
+          <%= f.submit '変更', class:"btn btn-outline-success" %>
         </td>
+        <% end %>
       </tr>
     <% end %>
    </tbody>
@@ -94,14 +96,14 @@
     <tbody>
       <tr>
         <th>商品合計</th>
-        <td><%= total_price(@order_details).to_s(:delimited) %></td>
+        <td><%= total_price(@order_detail).to_s(:delimited) %></td>
       </tr>
       <tr>
-        <th>配送料</th>
+        <th>送料</th>
         <td><%= @order.shipping_cost %></td>
       </tr>
       <tr>
-        <th>ご請求額</th>
+        <th>請求金額合計</th>
         <td><%= @order.total_payment.to_s(:delimited) %></td>
       </tr>
     </tbody>
