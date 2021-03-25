@@ -1,27 +1,29 @@
 <div class="col-12">
-
-  <table class="table table-bordered able-hover table-active" >
-    <thead>
-      <tr>
-        <th class="table-dark">郵便番号</th>
-        <th class="table-dark">住所</th>
-        <th class="table-dark">宛名</th>
-        <th class="table-dark" style="width:20%"></th>
-      </tr>
-    </thead>
-    <tbody>
-      <% addresses.each do |address| %>
+  <% if addresses.present? %>
+    <table class="table table-bordered able-hover table-active" >
+      <thead>
         <tr>
-          <td class="text-center"><%= address.postal_code %></td>
-          <td class="text-center"><%= address.address %></td>
-          <td class="text-center"><%= address.name %></td>
-          <td class="text-center">
-            <%= link_to "編集する", edit_address_path(address), class: "btn btn-success btn-sm" %>
-            <%= link_to "削除する", address_path(address), method: :delete, data: {confirm: "削除しますか？"},class: "btn btn-danger btn-sm"  %>
-           </td>
+          <th class="table-dark">郵便番号</th>
+          <th class="table-dark">住所</th>
+          <th class="table-dark">宛名</th>
+          <th class="table-dark" style="width:20%"></th>
         </tr>
-      <% end %>
-    </tbody>
-  </table>
-
+      </thead>
+      <tbody>
+        <% addresses.each do |address| %>
+          <tr>
+            <td class="text-center"><%= address.postal_code %></td>
+            <td class="text-center"><%= address.address %></td>
+            <td class="text-center"><%= address.name %></td>
+            <td class="text-center">
+              <%= link_to "編集する", edit_address_path(address), class: "btn btn-success btn-sm" %>
+              <%= link_to "削除する", address_path(address), method: :delete, data: {confirm: "削除しますか？"},class: "btn btn-danger btn-sm"  %>
+             </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  <% else %>
+    <p class="text-danger text-center"><i class="fas fa-sad-tear"></i>まだ配送先住所は登録されていません</p>
+  <% end %>
 </div>

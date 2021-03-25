@@ -4,12 +4,13 @@
   <h6 class="bg-light mt-5 ml-5 w-25 text-center">会員の方はこちらからログイン</h6>
 </div>
 
-<div class="container">
   <%= form_with model: @customer, url: customer_session_path, local:true do |f| %>
-    <%= render "devise/shared/error_messages", resource: resource %>
+
+<div class="container">
+
   <div class="field pt-5 text-center">
     <%= f.label :email, 'メールアドレス', class: "mx-3" %>
-    <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "col-4" %>
+    <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "col-4", placeholder: "sample@example.com" %>
   </div>
 
   <div class="field mt-3 mb-4 text-center">
@@ -27,4 +28,5 @@
 </div>
 
 <p class="pt-2 ml-5"><u><%= link_to "こちら", new_registration_path(resource_name) %></u>から新規登録を行ってください。</p>
+
 </div>

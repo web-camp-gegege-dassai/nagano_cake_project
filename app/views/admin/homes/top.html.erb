@@ -1,7 +1,5 @@
 <h4 class="bg-light mt-5 ml-5 px-5 w-25 text-center">注文履歴一覧</h4>
 
-<!--以下注文詳細機能完成後、確認-->
-
 <table class="table w-75 mt-5 mx-auto">
   <thead>
     <tr class="bg-light">
@@ -12,17 +10,24 @@
     </tr>
   </thead>
   <tbody>
-    <% @order_details.each do |order_detail| %>
+    <% @orders.each do |order| %>
       <tr>
-        <%=link_to admin_order_path(order_detail.id) do %>
-          <td><%= order_detail.created_at %></td>
-        <% end %>
-          <td><%= order_detail.order.name %></td>
-          <td><%= order_detail.amount %></td>
-          <td><%= order_detail.item.is_active %></td>
+          <td>
+          <u>
+            <%=link_to admin_order_path(order.id) do %>
+              <%= order.created_at.to_s(:datetime_jp) %>
+            <% end %>
+          </u>
+          </td>
+          <td>
+            <%= order.customer.last_name %>
+            <%= order.customer.first_name %>
+          </td>
+          <td><%= order.order_details.count %></td>
+          <td><%= order.status %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
-<%= paginate @order_details %>
+<%= paginate @orders %>
