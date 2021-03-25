@@ -21,6 +21,7 @@ class Admin::ItemsController < Admin::ApplicationController
   def create
     item = Item.new(item_params)
     if item.save
+      flash[:notice] = "新規商品が登録されました。"
       redirect_to admin_items_path
     else
       @items = Item.all
