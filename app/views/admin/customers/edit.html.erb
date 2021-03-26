@@ -90,8 +90,8 @@
         <p>会員ステータス</p>
       </div>
       <div class="col-lg-2">
-        <label><%= f.radio_button :is_deleted, :有効 %>有効</label>
-    　　　<label><%= f.radio_button :is_deleted, :退会 %>退会</label>
+        <label><%= f.radio_button :is_deleted, :false %>有効</label>
+        <label><%= f.radio_button :is_deleted, :true %>退会</label>
       </div>
     </div>
 
