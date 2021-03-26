@@ -5,16 +5,16 @@
 <div class="container">
   <div class="row">
     <!--商品画像-->
-    <div class="col-lg-4">
+    <div class="col-md-3">
       <%= attachment_image_tag @item, :image, size: "200x150", fomat:'jpeg' %>
     </div>
     <%= form_with model:@item, local:true do |f| %>
     
     <div class='row mb-1'>
-      <div class="col-lg-4">  
+      <div class="col-md-4">  
         商品名
       </div>
-      <div class="col-lg-4">
+      <div class="col-md-4">
         <%= @item.name %>
       </div>
     </div>
