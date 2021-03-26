@@ -18,7 +18,8 @@ class Customer < ApplicationRecord
   validates :telephone_number, presence: true
   validates :encrypted_password, presence: true
 
-  # 会員ステータス
-  enum is_deleted: { '有効': false, '退会': true}
+  def active_for_authentication?
+      super && (self.is_deleted == false)
+  end
 
 end
