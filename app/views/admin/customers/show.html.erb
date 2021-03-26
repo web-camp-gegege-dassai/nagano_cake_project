@@ -78,7 +78,11 @@
         <p>会員ステータス</p>
       </div>
       <div class="col-lg-2">
-        <%= @customer.is_deleted %>
+        <% if @customer.is_deleted == false %>
+          有効
+        <% else %>
+          退会
+        <% end %>
       </div>
     </div>
 　<% end %>
