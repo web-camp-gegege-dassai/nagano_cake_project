@@ -31,6 +31,4 @@ module ApplicationHelper
     current_cart = current_customer.cart_items
     total_price(current_cart) + order.shipping_cost
   end
-
-
 end
