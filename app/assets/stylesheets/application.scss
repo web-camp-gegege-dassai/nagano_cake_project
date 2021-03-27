@@ -19,6 +19,8 @@
 @import 'font-awesome-sprockets';
 @import 'font-awesome';
 
+@import 'font-awesome-sprockets';
+@import 'font-awesome';
 
 li{
   list-style:none;
@@ -31,4 +33,8 @@ li{
 
 .danger {
   color:red;
+}
+
+.size{
+  color:gray;
 }

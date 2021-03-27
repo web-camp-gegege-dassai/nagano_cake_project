@@ -9,6 +9,8 @@ class Item < ApplicationRecord
   # 商品画像
   attachment :image
   # 販売ステータス
-  enum is_active: { '販売中': true, '販売停止中': false }
+  def active_for_authentication?
+      super && (self.is_active == true)
+  end
 
 end
