@@ -9,12 +9,19 @@ class Admin::OrdersController < Admin::ApplicationController
     @order = Order.find(params[:id])
     if @order.update(order_params)
       flash[:notice] = "変更しました。"
-      redirect_to admin_order_path
+      if @order.status == '入金確認'
+        order_details = @order.order_details
+        order_details.update(making_status: "製作待ち")
+      end
+      redirect_to admin_order_path(@order)
+
     else
-      flash[:alert] = "変更しました。"
+      flash[:alert] = "変更できませんでした。"
       render :show
     end
   end
+
+
 
   private
 
