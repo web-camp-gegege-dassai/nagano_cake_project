@@ -1,14 +1,9 @@
 class Public::OrdersController < Public::ApplicationController
-  # before_action :ensure_correct_order, only: [:show]
   before_action :authenticate_customer!
   include ApplicationHelper
 
   def new
     @order = Order.new
-    
-    
-    
-    
     @address = Address.where(customer: current_customer)
   end
 
@@ -19,11 +14,8 @@ class Public::OrdersController < Public::ApplicationController
       payment_method: params[:order][:payment_method]
     )
     @order.shipping_cost = 800
-
     @order.total_payment = billing(@order)
-
     @selected_address = params[:order][:shipping_address]
-
 
     if @selected_address == "my_address"
       @order.postal_code = current_customer.postal_code
@@ -51,7 +43,6 @@ class Public::OrdersController < Public::ApplicationController
     end
   end
 
-
   def complete
   end
 
@@ -66,10 +57,6 @@ class Public::OrdersController < Public::ApplicationController
       new_address = Address.new(address_params)
       new_address.customer_id = current_customer.id
       new_address.save
-      # unless new_address.save
-      #   flash[:notice] = "有効な住所ではありませんでした。"
-      #   redirect_to new_order_path
-      # end
     end
 
     @cart_items = current_customer.cart_items
@@ -78,11 +65,10 @@ class Public::OrdersController < Public::ApplicationController
         order: @order,
         item: cart_item.item,
         amount: cart_item.amount,
-        # 小計の計算(仮)
         price: sub_price(cart_item)
         )
     end
-    
+
     @cart_items.destroy_all
   end
 
@@ -104,11 +90,6 @@ class Public::OrdersController < Public::ApplicationController
   def address_params
     params.require(:order).permit(:postal_code, :address, :name)
   end
-
-  # def ensure_correct_order
-  #   redirect_to cart_items_path if params[:id] == "confirm"
-  # end
-
 end
 
 
