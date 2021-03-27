@@ -4,29 +4,37 @@
 
 <!--商品新規登録-->
 <div class="text-right">
-  <%= link_to '商品新規登録', new_admin_item_path(@items), class: "btn btn-secondary" %>
+  <%= link_to new_admin_item_path(@items) do %>
+    <i class="fas fa-plus-circle fa-3x size"></i>
+  <% end %>
 </div>
 
 <div class="container">
   <div class="row">
-　　<table class='table table-hover table-inverse'>
-  　　<thead>
-    　　<tr>
-      　　<th>商品ID</th>
-      　　<th>商品名</th>
-     　　 <th>税抜価格</th>
-     　　<th>ジャンル</th>
-    　　  <th>ステータス</th>
-   　　 </tr>
-  　　</thead>
-  　　<tbody>
-    　　<% @items.each do |item| %>
-      　　<tr>
-     　　　　   <td><%= item.id %></td>
-     　　 　　  <td><%= link_to item.name, admin_item_path(item) %></td>
-     　　　　   <td><%= number_to_currency(item.price, unit: "", format: "%n%u", strip_insignificant_zeros: true) %></td>
-     　　　　   <td><%= item.genre.name %></td>
-    　　　　    <td><%= item.is_active %></td>
+    <table class='table table-hover table-inverse'>
+      <thead>
+        <tr>
+          <th>商品ID</th>
+          <th>商品名</th>
+          <th>税抜価格</th>
+          <th>ジャンル</th>
+          <th>ステータス</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @items.each do |item| %>
+          <tr>
+            <td><%= item.id %></td>
+            <td><%= link_to item.name, admin_item_path(item) %></td>
+            <td><%= number_to_currency(item.price, unit: "", format: "%n%u", strip_insignificant_zeros: true) %></td>
+            <td><%= item.genre.name %></td>
+            <td>
+                <%= item.is_active == false %>
+                  販売中
+                <% else %>
+                  販売停止中
+                <% end %>
+            </td>
           </tr>
         <% end %>
       </tbody>
