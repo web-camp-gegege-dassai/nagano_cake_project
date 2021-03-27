@@ -5,44 +5,52 @@
 <div class="container">
   <div class="row">
     <!--商品画像-->
-    <div class="col-lg-3">
+    <div class="col-3">
       <%= attachment_image_tag @item, :image, size: "200x150", fomat:'jpeg' %>
     </div>
-    <%= form_with model:@item, local:true do |f| %>
-      <div class='row mb-1'>
-        <div class="col-lg-2">  
-          <p>商品名</p>
-        </div>
-        <div class="col-lg-6">
-          <%= @item.name %>
-        </div>
-      </div>
-    
-      <div class="form-group">
-        <%= f.label "商品詳細" %>
-        <%= @item.introduction %>
-      </div>
-      <div class="form-group">
-        <%= f.label "ジャンル" %>
-        <%= @item.genre.name %>
-      </div>
-      <div class="form-group">
-        <%= f.label "税込価格" %><br>
-        <%= f.label "(税抜価格)" %>
-        <%= tax_price(@item.price).to_s(:delimited) %>
-        <label>(<%= number_to_currency(@item.price, unit: "", format: "%n%u", strip_insignificant_zeros: true) %>)円</label>
-      </div>
-      <div class="form-group">
-        <%= f.label "販売ステータス" %>
-        <% if @item.is_active == true %>
-          販売中
-        <% else %>
-          販売停止中
+  
+    <table class="col-3 offset-1 table table-borderless">
+      <tbody>
+        <%= form_with model:@item, local:true do |f| %>
+          <tr>
+            <th><%= f.label "商品名" %></th>
+            <td><%= @item.name %></td>
+          </tr>
+          <tr>
+            <th><%= f.label "商品詳細" %></th>
+            <td><%= @item.introduction %></td>
+          </tr>
+          <tr>
+            <th><%= f.label "ジャンル" %></th>
+            <td><%= @item.genre.name %></td>
+          </tr>
+          <tr>
+            <th><%= f.label "税込価格" %></th>
+            <td><%= tax_price(@item.price).to_s(:delimited) %></td>
+          </tr>
+          <tr>
+            <th><%= f.label "(税抜価格)" %></th>
+            <td>
+              (<%= number_to_currency(@item.price, unit: "", format: "%n%u", strip_insignificant_zeros: true) %>)円
+            </td>
+          </tr>
+          <tr>
+            <th><%= f.label "販売ステータス" %></th>
+            <td>
+              <% if @item.is_active == true %>
+                販売中
+              <% else %>
+                販売停止中
+              <% end %>
+            </td>
+          </tr>
         <% end %>
-      </div>
-    <% end %>
+      </tbody>
+    </table>
   </div>
-  <div class="form-group text-center">
-    <%= link_to "編集する", edit_admin_item_path(@item.id), class: 'btn btn-success' %>
+  
+  <div class="row">
+    <div class="col-12 text-center">
+      <%= link_to "編集する", edit_admin_item_path(@item.id), class: 'btn btn-success' %>
+    </div>
   </div>
-</div>

@@ -19,13 +19,13 @@ class Admin::ItemsController < Admin::ApplicationController
   end
   
   def create
-    @item = Item.new(item_params)
-    if @item.save
+    item = Item.new(item_params)
+    if item.save
       flash[:notice] = "新規商品が登録されました。"
       redirect_to admin_item_path(item.id)
     else
-      flash[:alert] = "入力に不備があります。"
-      @genres = Genre.all
+      flash[:alert] = "新規商品が登録に失敗しました。"
+      @items = Item.all
       render :new
     end
   end
@@ -33,11 +33,10 @@ class Admin::ItemsController < Admin::ApplicationController
   def update
     @item = Item.find(params[:id])
     if @item.update(item_params)
-      flash[:notice] = "商品内容が変更されました。"
+      flash[:notice] = "商品内容が更新されました。"
       redirect_to admin_items_path
     else
-      flash[:alert] = "入力に不備があります。"
-      @genres = Genre.all
+      flash[:alert] = "商品内容の変更に失敗しました。"
       render :edit
     end
   end
