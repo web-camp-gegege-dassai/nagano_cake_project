@@ -2,18 +2,6 @@
   <h3><%= @customer.last_name + @customer.first_name %>さんの会員情報編集</h3>
 </div>
 
-<!--バリデーション-->
-<% if @customer.errors.any? %>
-  <div id="error_explanation" class="alert alert-danger">
-    <h2><%= @customer.errors.count %>Save failed due to an error.</h2>
-    <ul>
-      <% @customer.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-    </ul>
-  </div>
-<% end %>
-
 <div class="container">
   <%= form_with model:@customer, url: admin_customer_path(@customer.id), local:true do |f| %>
     <div class='row mb-1'>
@@ -63,7 +51,7 @@
         <p>住所</p>
       </div>
       <div class="col-lg-2">
-        <%= f.text_area :address %>
+        <%= f.text_area :address, size: "50x1" %>
       </div>
     </div>
 
