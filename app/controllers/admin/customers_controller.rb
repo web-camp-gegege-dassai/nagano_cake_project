@@ -19,8 +19,8 @@ class Admin::CustomersController < Admin::ApplicationController
       flash[:notice] = "変更しました。"
       redirect_to admin_customer_path
     else
-      flash[:alert] = "変更できませんで。"
-      render :show
+      flash[:alert] = "変更できませんでした。"
+      render :edit
     end
   end
 
