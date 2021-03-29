@@ -17,7 +17,7 @@ class Admin::OrderDetailsController < Admin::ApplicationController
       if @order_detail.making_status == '製作中'
         orders = @order_detail.order
         orders.update(status:"製作中")
-      elsif @order_detail.order.order_details.count == OrderDetail.where(making_status: "製作完了").count
+      elsif @order_detail.order.order_details.count == @order_detail.order.order_details.where(making_status: "製作完了").count
         orders = @order_detail.order
         orders.update(status:"発送準備中")
       end
